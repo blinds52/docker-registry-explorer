@@ -1,0 +1,46 @@
+<div>
+  <label> Registry: 
+    <input [(ngModel)]="registry" />
+  </label>
+</div>
+
+<div>
+  <label> Repository: 
+    <input [(ngModel)]="repository" />
+  </label>
+</div>
+
+<div>
+  <label> Insecure: 
+    <input type="checkbox" [(ngModel)]="insecure" />
+  </label>
+</div>
+
+<div>
+  <label> Anonymous: 
+    <input type="checkbox" [(ngModel)]="anonymous" />
+  </label>
+</div>
+
+<div>
+  <label> Username: 
+    <input [(ngModel)]="username" />
+  </label>
+</div>
+
+<div>
+  <label> Password: 
+    <input type="password" [(ngModel)]="username" />
+  </label>
+</div> 
+
+<button (click)="onLoad()">Load</button>
+
+<ul>
+  <li *ngFor="let tag of tags">
+    <div title="{{tag.qualifiedName}}">{{tag.tag}}</div>
+  </li>
+</ul>
+
+
+
