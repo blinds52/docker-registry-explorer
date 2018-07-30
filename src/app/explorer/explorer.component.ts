@@ -20,8 +20,24 @@ export class ExplorerComponent implements OnInit {
   onLoad() {
 
     var drc = require('docker-registry-client');
+
+    var options;
+
+    if (this.anonymous) {
+      options = {
+        name: this.repository,
+        insecure: this.insecure,
+      };
+    } else {
+      options = {
+        name: this.repository,
+        insecure: this.insecure,
+        username: this.username,
+        password: this.password,
+      };
+    }
     
-    var client = drc.createClientV2({name: this.repository});
+    var client = drc.createClientV2(options);
 
     console.log(this.registry);
     console.log(this.repository);
