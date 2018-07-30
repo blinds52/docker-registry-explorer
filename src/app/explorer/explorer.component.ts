@@ -53,6 +53,25 @@ export class ExplorerComponent implements OnInit {
     });
   }
 
+/* To copy any Text */
+copyText(val: string){
+  let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+
+  onCopy(tag: Tag): void {
+    this.copyText(tag.qualifiedName);
+  }
+
   @Input() registry: string;
   @Input() repository: string;
   @Input() insecure: boolean;

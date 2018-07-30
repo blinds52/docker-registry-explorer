@@ -36,9 +36,9 @@
 
 <button (click)="onLoad()">Load</button>
 
-<ul>
-  <li *ngFor="let tag of tags">
-    <div title="{{tag.qualifiedName}}">{{tag.tag}}</div>
+<ul class="explorer">
+  <li *ngFor="let tag of tags" title="{{tag.qualifiedName}}">
+    <span class="badge" (click)="onCopy(tag)" title="Copy to Clipboard" ><img src="assets/copy.png" style="width:12px" /></span>{{tag.tag}}
   </li>
 </ul>
 
