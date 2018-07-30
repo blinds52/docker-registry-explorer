@@ -21,27 +21,30 @@ export class ExplorerComponent implements OnInit {
 
     var drc = require('docker-registry-client');
 
-    var options;
+    var name = `${this.registry}/${this.repository}`;
 
+    console.log(name);
+
+    var options;
+    
     if (this.anonymous) {
       options = {
-        name: this.repository,
+        name: name,
         insecure: this.insecure,
       };
     } else {
       options = {
-        name: this.repository,
+        name: name,
         insecure: this.insecure,
         username: this.username,
         password: this.password,
       };
     }
     
+    //Create the client
     var client = drc.createClientV2(options);
 
-    console.log(this.registry);
-    console.log(this.repository);
-
+    //Capture this reference
     var mythis = this;
     
     client.listTags(function (err, tags) {

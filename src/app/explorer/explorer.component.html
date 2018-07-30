@@ -1,46 +1,42 @@
-<div>
-  <label> Registry: 
+<div class="explorerFrame">
+
+  <div>
+    <label>Registry</label> 
     <input [(ngModel)]="registry" />
-  </label>
-</div>
+  </div>
 
-<div>
-  <label> Repository: 
+  <div>
+    <label>Repository</label>
     <input [(ngModel)]="repository" />
-  </label>
-</div>
+  </div>
 
-<div>
-  <label> Insecure: 
+  <div>
+    <label class="label">Insecure</label>
     <input type="checkbox" [(ngModel)]="insecure" />
-  </label>
-</div>
+  </div>
 
-<div>
-  <label> Anonymous: 
+  <div>
+    <label class="label">Anonymous</label>
     <input type="checkbox" [(ngModel)]="anonymous" />
-  </label>
-</div>
+  </div>
 
-<div>
-  <label> Username: 
+  <div *ngIf="anonymous == false">
+    <label class="label">Username</label>
     <input [(ngModel)]="username" />
-  </label>
-</div>
+  </div>
 
-<div>
-  <label> Password: 
+  <div *ngIf="anonymous == false">
+    <label class="label"> Password</label>
     <input type="password" [(ngModel)]="password" />
-  </label>
-</div> 
+  </div> 
 
-<button (click)="onLoad()">Load</button>
+  <button (click)="onLoad()">Load</button>
 
-<ul class="explorer">
-  <li *ngFor="let tag of tags" title="{{tag.qualifiedName}}">
-    <span class="badge" (click)="onCopy(tag)" title="Copy to Clipboard" ><img src="assets/copy.png" style="width:12px" /></span>{{tag.tag}}
-  </li>
-</ul>
-
+  <ul class="explorer">
+    <li *ngFor="let tag of tags" title="{{tag.qualifiedName}}">
+      <span class="badge" (click)="onCopy(tag)" title="Copy to Clipboard" ><img src="assets/copy.png" style="width:12px" /></span>{{tag.tag}}
+    </li>
+  </ul>
 
 
+</div>
