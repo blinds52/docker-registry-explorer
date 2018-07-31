@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Tag } from '../tag';
+import { ClientService } from '../client.service';
 
 @Component({
   selector: 'app-explorer',
@@ -8,78 +9,31 @@ import { Tag } from '../tag';
 })
 export class ExplorerComponent implements OnInit {
 
-  constructor() { }
+  constructor(public clientService: ClientService) { }
 
   ngOnInit() {
-    this.registry = 'docker.io';
-    this.repository = 'ubuntu';
-    this.insecure = false;
-    this.anonymous = true;
   }
-
-  createClient() {
-
-    var drc = require('docker-registry-client');
-
-    var name = `${this.registry}/${this.repository}`;
-
-    console.log(name);
-
-    var options;
-    
-    if (this.anonymous) {
-      options = {
-        name: name,
-        insecure: this.insecure,
-      };
-    } else {
-      options = {
-        name: name,
-        insecure: this.insecure,
-        username: this.username,
-        password: this.password,
-      };
-    }
-    
-    //Create the client
-    var client = drc.createClientV2(options);
-
-    return client;
-  }
-
+  
   onLoad() {
 
+    //Clear the list
     this.tags = null;
 
-    //Create the client
-    var client = this.createClient();
+    //Get the tags (observable)
+    var tags = this.clientService.getTags();
 
-    //Capture this reference
+    //capture this
     var mythis = this;
-    
-    client.listTags(function (err, tags) {
 
-      //Create a place to put the transformed tags
-      let otherTags: Array<Tag> = [];
+    //subscribe to the updates
+    tags.subscribe(t => 
+      {
+        console.log("callback!");
 
-      //Consider each of the source tags
-      for (let tag of tags.tags) {
+        console.log(JSON.stringify(t, null, 4));
 
-        //Add the transformed tag
-        otherTags.push(
-          new Tag(mythis.registry, tags.name, tag)
-        )
-      }
-
-      mythis.tags = otherTags;
-  
-      /*
-        * Because the client is typically using Keep-Alive, it will maintain
-        * open connections. Therefore you should call `.close()` to close
-        * those when finished.
-        */
-      client.close();
-    });
+        mythis.tags = t; 
+    })
   }
 
 /* To copy any Text */
@@ -103,28 +57,21 @@ copyText(val: string){
 
   onManifest(tag: Tag): void {
     
-    var client = this.createClient();
+    // var client = this.createClient();
 
-    console.log("Getting manifest");
+    // console.log("Getting manifest");
 
-    var opts = {
-      ref: tag.tag 
-    };
+    // var opts = {
+    //   ref: tag.tag 
+    // };
 
-    client.getManifest(opts, function (err, manifest){
+    // client.getManifest(opts, function (err, manifest){
 
-      console.log(JSON.stringify(manifest, null, 4));
+    //   console.log(JSON.stringify(manifest, null, 4));
 
-    });
+    // });
 
   }
-
-  @Input() registry: string;
-  @Input() repository: string;
-  @Input() insecure: boolean;
-  @Input() anonymous: boolean;
-  @Input() username: string;
-  @Input() password: string;
-
+  
   tags: Tag[];
 }

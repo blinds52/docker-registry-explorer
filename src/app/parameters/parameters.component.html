@@ -1,5 +1,5 @@
-<div class="explorerFrame">
-<!-- 
+<div class="parameters">
+
   <div>
     <label>Registry</label> 
     <input [(ngModel)]="clientService.registry" />
@@ -28,16 +28,5 @@
   <div *ngIf="clientService.anonymous == false">
     <label class="label"> Password</label>
     <input type="password" [(ngModel)]="clientService.password" />
-  </div>  -->
-
-  <button (click)="onLoad()">Load</button>
-
-  <ul class="explorer">
-    <li *ngFor="let tag of tags" title="{{tag.qualifiedName}}">
-      <span class="badge" (click)="onCopy(tag)" title="Copy to Clipboard" >C</span>
-      <span class="manifest" (click)="onManifest(tag)" title="View Manifest">M</span>{{tag.tag}}
-    </li>
-  </ul>
-  <!-- <img src="assets/copy.png" style="width:12px" /> -->
-
+  </div> 
 </div>

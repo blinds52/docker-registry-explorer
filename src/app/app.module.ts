@@ -19,6 +19,7 @@ import { WebviewDirective } from './directives/webview.directive';
 
 import { AppComponent } from './app.component';
 import { ExplorerComponent } from './explorer/explorer.component';
+import { ParametersComponent } from './parameters/parameters.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -29,7 +30,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     WebviewDirective,
-    ExplorerComponent
+    ExplorerComponent,
+    ParametersComponent
   ],
   imports: [
     BrowserModule,
