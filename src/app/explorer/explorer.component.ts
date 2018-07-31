@@ -49,6 +49,8 @@ export class ExplorerComponent implements OnInit {
 
   onLoad() {
 
+    this.tags = null;
+
     //Create the client
     var client = this.createClient();
 
