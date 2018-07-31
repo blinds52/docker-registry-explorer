@@ -17,6 +17,7 @@
     padding: .3em 0;
     height: 1.6em;
     border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif
   }
 
   .explorer li:hover {
@@ -49,8 +50,8 @@
   label {
       width: 100px;
       display: inline-block;
-      font-weight: bold;
-      color: #607D8B;
+      font-weight: normal;
+      color: rgb(71, 71, 71);
       font-family: Arial, Helvetica, sans-serif
   }
 
@@ -66,7 +67,7 @@
   }
 
   input {
-    height: 2em;
+    height: 1.6em;
     font-size: 1em;
     padding-left: .4em;
     margin: 2px;
@@ -74,9 +75,9 @@
   }
 
   input[type="checkbox"] {
-    height: 2em;
+    height: 1em;
     font-size: 1em;
     padding-left: .4em;
     margin: 2px;
-    width: 100px;
+    width:50px;
   }
