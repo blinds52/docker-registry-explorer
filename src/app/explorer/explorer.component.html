@@ -34,9 +34,10 @@
 
   <ul class="explorer">
     <li *ngFor="let tag of tags" title="{{tag.qualifiedName}}">
-      <span class="badge" (click)="onCopy(tag)" title="Copy to Clipboard" ><img src="assets/copy.png" style="width:12px" /></span>{{tag.tag}}
+      <span class="badge" (click)="onCopy(tag)" title="Copy to Clipboard" >C</span>
+      <span class="manifest" (click)="onManifest(tag)" title="View Manifest">M</span>{{tag.tag}}
     </li>
   </ul>
-
+  <!-- <img src="assets/copy.png" style="width:12px" /> -->
 
 </div>

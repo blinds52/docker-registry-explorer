@@ -17,7 +17,7 @@ export class ExplorerComponent implements OnInit {
     this.anonymous = true;
   }
 
-  onLoad() {
+  createClient() {
 
     var drc = require('docker-registry-client');
 
@@ -43,6 +43,14 @@ export class ExplorerComponent implements OnInit {
     
     //Create the client
     var client = drc.createClientV2(options);
+
+    return client;
+  }
+
+  onLoad() {
+
+    //Create the client
+    var client = this.createClient();
 
     //Capture this reference
     var mythis = this;
@@ -89,6 +97,24 @@ copyText(val: string){
 
   onCopy(tag: Tag): void {
     this.copyText(tag.qualifiedName);
+  }
+
+  onManifest(tag: Tag): void {
+    
+    var client = this.createClient();
+
+    console.log("Getting manifest");
+
+    var opts = {
+      ref: tag.tag 
+    };
+
+    client.getManifest(opts, function (err, manifest){
+
+      console.log(JSON.stringify(manifest, null, 4));
+
+    });
+
   }
 
   @Input() registry: string;
