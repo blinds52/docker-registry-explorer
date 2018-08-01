@@ -47,7 +47,6 @@
   }
 
   .explorer .manifest {
-    cursor: pointer;
     display: inline-block;
     font-size: small;
     color: white;
@@ -61,14 +60,11 @@
     margin-right: .8em;
   }
 
-  label {
-      width: 100px;
-      display: inline-block;
-      font-weight: normal;
-      color: rgb(71, 71, 71);
-      font-family: Arial, Helvetica, sans-serif
+  .explorer .manifest a {
+    color: white;
   }
 
+ 
   button {
     margin-top: 20px;
     font-family: Arial;
@@ -80,18 +76,4 @@
     cursor: pointer; cursor: hand;
   }
 
-  input {
-    height: 1.6em;
-    font-size: 1em;
-    padding-left: .4em;
-    margin: 2px;
-    width: 300px;
-  }
-
-  input[type="checkbox"] {
-    height: 1em;
-    font-size: 1em;
-    padding-left: .4em;
-    margin: 2px;
-    width:50px;
-  }
+  

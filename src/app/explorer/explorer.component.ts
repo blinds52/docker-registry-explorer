@@ -12,8 +12,11 @@ export class ExplorerComponent implements OnInit {
   constructor(public clientService: ClientService) { }
 
   ngOnInit() {
+
+    this.onLoad();
+
   }
-  
+
   onLoad() {
 
     //Clear the list

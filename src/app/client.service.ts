@@ -74,6 +74,30 @@ export class ClientService {
     });
   }
 
+  getManfiest(tag: string): Observable<object> {
+
+    var mythis = this;
+
+    return Observable.create(observer => {
+
+      var client = mythis.createClient();
+
+      var opts = {
+        ref: tag
+      };
+
+      client.getManifest(opts, function (err, manifest) {
+
+        observer.next(manifest);
+        observer.complete();
+
+        client.close();
+
+      });
+    });
+
+  }
+
   @Input() registry: string;
   @Input() repository: string;
   @Input() insecure: boolean;

@@ -1,43 +1,14 @@
 <div class="explorerFrame">
-<!-- 
-  <div>
-    <label>Registry</label> 
-    <input [(ngModel)]="clientService.registry" />
-  </div>
 
-  <div>
-    <label>Repository</label>
-    <input [(ngModel)]="clientService.repository" />
-  </div>
-
-  <div>
-    <label class="label">Insecure</label>
-    <input type="checkbox" [(ngModel)]="clientService.insecure" />
-  </div>
-
-  <div>
-    <label class="label">Anonymous</label>
-    <input type="checkbox" [(ngModel)]="clientService.anonymous" />
-  </div>
-
-  <div *ngIf="clientService.anonymous == false">
-    <label class="label">Username</label>
-    <input [(ngModel)]="clientService.username" />
-  </div>
-
-  <div *ngIf="clientService.anonymous == false">
-    <label class="label"> Password</label>
-    <input type="password" [(ngModel)]="clientService.password" />
-  </div>  -->
-
-  <button (click)="onLoad()">Load</button>
+  <button (click)="onLoad()">Refresh</button>
 
   <ul class="explorer">
     <li *ngFor="let tag of tags" title="{{tag.qualifiedName}}">
       <span class="badge" (click)="onCopy(tag)" title="Copy to Clipboard" >C</span>
-      <span class="manifest" (click)="onManifest(tag)" title="View Manifest">M</span>{{tag.tag}}
+      <span class="manifest" title="View Manifest">
+        <a routerLink="/manifest/{{tag.tag}}">M</a>
+      </span>{{tag.tag}}
     </li>
   </ul>
-  <!-- <img src="assets/copy.png" style="width:12px" /> -->
 
 </div>
