@@ -1,14 +1,21 @@
 <div class="explorerFrame">
 
-  <button (click)="onLoad()">Refresh</button>
+  <button (click)="onLoad()">Load Tags</button>
 
-  <ul class="explorer">
-    <li *ngFor="let tag of tags" title="{{tag.qualifiedName}}">
-      <span class="badge" (click)="onCopy(tag)" title="Copy to Clipboard" >C</span>
-      <span class="manifest" title="View Manifest">
-        <a routerLink="/manifest/{{tag.tag}}">M</a>
-      </span>{{tag.tag}}
-    </li>
-  </ul>
+  
+      <div>
+        <ul class="explorer">
+          <li *ngFor="let tag of tags" title="{{tag.qualifiedName}}">
+            <span class="badge" (click)="onCopy(tag)" title="Copy to Clipboard" >C</span>
+            <span class="manifest" title="View Manifest" (click)="onManifest(tag)">M</span>{{tag.tag}}
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <textarea class="manifest-text" [ngModel]="manifest"></textarea>
+      </div>
+
+   
 
 </div>

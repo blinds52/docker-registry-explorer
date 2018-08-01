@@ -11,16 +11,13 @@ export class ExplorerComponent implements OnInit {
 
   constructor(public clientService: ClientService) { }
 
-  ngOnInit() {
-
-    this.onLoad();
-
-  }
+  ngOnInit() {}
 
   onLoad() {
 
     //Clear the list
     this.tags = null;
+    this.manifest = null;
 
     //Get the tags (observable)
     var tags = this.clientService.getTags();
@@ -36,7 +33,7 @@ export class ExplorerComponent implements OnInit {
         console.log(JSON.stringify(t, null, 4));
 
         mythis.tags = t; 
-    })
+    });
   }
 
 /* To copy any Text */
@@ -59,22 +56,20 @@ copyText(val: string){
   }
 
   onManifest(tag: Tag): void {
-    
-    // var client = this.createClient();
 
-    // console.log("Getting manifest");
+    var mythis = this;
 
-    // var opts = {
-    //   ref: tag.tag 
-    // };
+    this.clientService.getManfiest(tag.tag)
+      .subscribe(manifest => 
+        {
+          console.log("manifest callback!");
 
-    // client.getManifest(opts, function (err, manifest){
-
-    //   console.log(JSON.stringify(manifest, null, 4));
-
-    // });
-
+          mythis.manifest = JSON.stringify(manifest, null,4)
+        });
   }
   
   tags: Tag[];
+  manifest: string;
 }
+
+
