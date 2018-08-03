@@ -17,7 +17,6 @@ export class ExplorerComponent implements OnInit {
 
     //Clear the list
     this.tags = null;
-    this.manifest = null;
 
     //Get the tags (observable)
     var tags = this.clientService.getTags();
@@ -57,19 +56,35 @@ copyText(val: string){
 
   onManifest(tag: Tag): void {
 
-    var mythis = this;
-
     this.clientService.getManfiest(tag.tag)
       .subscribe(manifest => 
         {
           console.log("manifest callback!");
 
-          mythis.manifest = JSON.stringify(manifest, null,4)
+          //var electron = require('electron');
+          var BrowserWindow = require('electron').remote.BrowserWindow;
+
+          var win = new BrowserWindow();
+
+          win.show();
+
+          var pageContent = "<html>" + 
+              "<body>" + 
+              "<head>" +
+              "<title>Manifest: " + tag.tag + " </title>" +
+              "</head>" +
+              "<textarea style='width:100%;height:100%;'>" +
+              JSON.stringify(manifest, null,4) +
+              "</textarea>" +
+              "</body>" +
+              "</html>"
+
+          win.loadURL('data:text/html;charset=UTF-8,' + encodeURIComponent(pageContent));
+
         });
   }
   
   tags: Tag[];
-  manifest: string;
 }
 
 

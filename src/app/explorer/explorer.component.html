@@ -1,8 +1,7 @@
 <div class="explorerFrame">
 
   <button (click)="onLoad()">Load Tags</button>
-
-  
+ 
       <div>
         <ul class="explorer">
           <li *ngFor="let tag of tags" title="{{tag.qualifiedName}}">
@@ -11,11 +10,5 @@
           </li>
         </ul>
       </div>
-
-      <div>
-        <textarea class="manifest-text" [ngModel]="manifest"></textarea>
-      </div>
-
-   
 
 </div>
